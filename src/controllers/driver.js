@@ -17,30 +17,25 @@ exports.get = async (req, res) => {
 
 exports.create = async (req, res) => {
   const { first_name, last_name, licence_number } = req.body;
-  if (!first_name || !last_name || !licence_number) {
+  if(!first_name || !last_name || !licence_number) {
     return res.status(400).json({ message: "All fields are required" });
   }
-
-  let exists = false;
-  for (const driver of drivers) {
-    if (String(driver.licence_number).trim() == String(licence_number).trim()) {
-      exists = true;
-      break;
-    }
-  }
-
-  if (exists && drivers.length > 0) {
+ 
+  const existingDriver = drivers.find(driver => driver.licence_number == String(licence_number));
+  console.log(existingDriver);
+  if(existingDriver != undefined){
     return res.status(409).json({ message: "Driver already exists" });
-  } else {
+  }
+  else{
     const driver = {
-      id: drivers.length + 1,
-      first_name,
-      last_name,
-      licence_number,
+        id: drivers.length + 1,
+        first_name,
+        last_name,
+        licence_number
     };
-
-    drivers.push(driver);
-    return res.status(201).json(driver);
+ 
+  drivers.push(driver);
+  return  res.status(201).json(driver);
   }
 };
 
