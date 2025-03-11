@@ -29,7 +29,7 @@ exports.create = async (req, res) => {
     }
   }
 
-  if (exists) {
+  if (exists && drivers.length > 0) {
     return res.status(409).json({ message: "Driver already exists" });
   } else {
     const driver = {
