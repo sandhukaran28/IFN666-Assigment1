@@ -21,7 +21,7 @@ exports.get = async (req, res) => {
 
     const existingDriver = drivers.find(driver => driver.licence_number == licence_number);
     console.log(existingDriver);
-    if(existingDriver){
+    if(existingDriver && existingDriver != undefined){
       return res.status(409).json({ message: "Driver already exists" });
     }
     else{
