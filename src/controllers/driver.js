@@ -28,7 +28,7 @@ for (const driver of drivers) {
 }
 
 
-    if(exists) {
+    if(!exists) {
       return res.status(409).json({ message: "Driver already exists" });
     }
     else{
