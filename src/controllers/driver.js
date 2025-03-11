@@ -20,8 +20,7 @@ exports.get = async (req, res) => {
     }
 
     const existingDriver = drivers.find(driver => driver.licence_number === String(licence_number));
-    console.log(existingDriver);
-    if(false){
+    if(existingDriver){
       return res.status(409).json({ message: "Driver already exists" });
     }
     else{
