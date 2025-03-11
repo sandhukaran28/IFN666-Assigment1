@@ -19,9 +19,16 @@ exports.get = async (req, res) => {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    const existingDriver = drivers.find(driver => String(driver.licence_number) === String(licence_number));
+    let exists = false;
+for (const driver of drivers) {
+  if (String(driver.licence_number) === String(licence_number)) {
+    exists = true;
+    break;
+  }
+}
 
-    if(existingDriver) {
+
+    if(exists) {
       return res.status(409).json({ message: "Driver already exists" });
     }
     else{
