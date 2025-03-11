@@ -23,7 +23,7 @@ exports.create = async (req, res) => {
 
   let exists = false;
   for (const driver of drivers) {
-    if (String(driver.licence_number).trim() === String(licence_number).trim()) {
+    if (String(driver.licence_number).trim() == String(licence_number).trim()) {
       exists = true;
       break;
     }
