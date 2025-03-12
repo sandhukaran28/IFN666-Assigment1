@@ -55,7 +55,7 @@ exports.update = async (req, res) => {
   }
 };
 
-exports.deleteDriver = async (req, res) => {
+exports.delete = async (req, res) => {
   const { id } = req.params;
   const driverIndex = drivers.findIndex((driver) => driver.licence_number == id);
   if (driverIndex == -1) {

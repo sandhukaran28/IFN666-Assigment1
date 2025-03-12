@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getAll, get, create, deleteDriver,update } = require('../controllers/driver');
+const { getAll, get, create,update,delete: deleteDriver } = require('../controllers/driver');
 
 router.get("/",getAll);
 router.get("/:id",get);
