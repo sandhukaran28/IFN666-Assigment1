@@ -6,8 +6,8 @@ const mediaTypeValidator = require("./src/middleware/mediaTypeValidator");
 const app = express();
 
 app.use(express.json());
-app.use(mediaTypeValidator);
 app.use(express.urlencoded({ extended: true }));
+app.use(mediaTypeValidator);
 
 const port = 3000;
 
