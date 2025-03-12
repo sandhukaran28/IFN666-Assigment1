@@ -22,7 +22,6 @@ exports.create = async (req, res) => {
   }
  
   const existingDriver = drivers.find(driver => String(driver.licence_number) == String(licence_number));
-  console.log(existingDriver);
   if(existingDriver){
     return res.status(409).json({ message: "Driver already exists" });
   }
@@ -59,7 +58,7 @@ exports.delete = async (req, res) => {
   const { id } = req.params;
   const driverIndex = drivers.findIndex((driver) => driver.licence_number == id);
   if (driverIndex == -1) {
-    return res.status(404).json({ message: "Driver not found" });
+    return res.status(204).json({ message: "Driver not found" });
   } else {
     drivers.splice(driverIndex, 1);
     return res.status(200).json({ message: "Driver deleted successfully" });
