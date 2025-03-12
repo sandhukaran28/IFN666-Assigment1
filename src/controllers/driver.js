@@ -61,6 +61,6 @@ exports.deleteDriver = async (req, res) => {
     return res.status(404).json({ message: "Driver not found" });
   } else {
     drivers.splice(driverIndex, 1);
-    return res.status(204).send();
+    return res.status(200).send();
   }
 };
