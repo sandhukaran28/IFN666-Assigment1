@@ -1,7 +1,7 @@
 const drivers = [];
 
 exports.getAll = async (req, res) => {
-  res.status(200).json(drivers);
+  return res.status(200).json(drivers);
 };
 
 exports.get = async (req, res) => {
@@ -9,9 +9,9 @@ exports.get = async (req, res) => {
     (driver) => driver.licence_number == req.params.id
   );
   if (!driver) {
-    res.status(204).json({ message: "Driver not found" });
+    return res.status(204).json({ message: "Driver not found" });
   } else {
-    res.status(200).json(driver);
+    return res.status(200).json(driver);
   }
 };
 
@@ -44,23 +44,23 @@ exports.update = async (req, res) => {
   const { first_name, last_name } = req.body;
   const driver = drivers.find((driver) => driver.id == id);
   if (!driver) {
-    res.status(404).json({ message: "Driver not found" });
+    return res.status(404).json({ message: "Driver not found" });
   } else {
     if (!first_name || !last_name) {
-      res.status(400).json({ message: "All fields are required" });
+      return res.status(400).json({ message: "All fields are required" });
     }
     driver.first_name = first_name;
     driver.last_name = last_name;
-    res.status(200).json(driver);
+    return res.status(200).json(driver);
   }
 };
 
 exports.deleteDriver = async (req, res) => {
   const driverIndex = drivers.findIndex((driver) => driver.id == req.params.id);
   if (driverIndex == -1) {
-    res.status(404).json({ message: "Driver not found" });
+    return res.status(404).json({ message: "Driver not found" });
   } else {
     drivers.splice(driverIndex, 1);
-    res.status(204).send();
+    return res.status(204).send();
   }
 };
