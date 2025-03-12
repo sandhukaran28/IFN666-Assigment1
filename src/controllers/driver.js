@@ -42,7 +42,7 @@ exports.create = async (req, res) => {
 exports.update = async (req, res) => {
   const { id } = req.params;
   const { first_name, last_name } = req.body;
-  const driver = drivers.find((driver) => driver.id == id);
+  const driver = drivers.find((driver) => driver.licence_number == id);
   if (!driver) {
     return res.status(404).json({ message: "Driver not found" });
   } else {
@@ -56,7 +56,7 @@ exports.update = async (req, res) => {
 };
 
 exports.deleteDriver = async (req, res) => {
-  const driverIndex = drivers.findIndex((driver) => driver.id == req.params.id);
+  const driverIndex = drivers.findIndex((driver) => driver.licence_number == req.params.id);
   if (driverIndex == -1) {
     return res.status(404).json({ message: "Driver not found" });
   } else {
