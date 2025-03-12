@@ -56,7 +56,8 @@ exports.update = async (req, res) => {
 };
 
 exports.deleteDriver = async (req, res) => {
-  const driverIndex = drivers.findIndex((driver) => driver.licence_number == req.params.id);
+  const { id } = req.params;
+  const driverIndex = drivers.findIndex((driver) => driver.licence_number == id);
   if (driverIndex == -1) {
     return res.status(404).json({ message: "Driver not found" });
   } else {
